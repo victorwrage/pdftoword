@@ -1,0 +1,4 @@
+docling
+litellm
+google-generativeai
+requests
