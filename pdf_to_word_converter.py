@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__) # Use a named logger
 
 def check_lm_studio_connection(app_queue: queue.Queue = None):
     """Checks if LM Studio is running and accessible."""
-    url = "http://127.0.0.1:1234/v1/models"
+    url = "http://192.168.17.6:1234/v1/models"
     message_prefix = "LM Studio: "
     try:
         response = requests.get(url, timeout=5)
@@ -43,7 +43,7 @@ def lm_studio_vlm_options(model: str) -> ApiVlmOptions:
         "If the image does not contain text, you should respond with the following text: <NO_TEXT_FOUND>"
     )
     return ApiVlmOptions(
-        url="http://localhost:1234/v1/chat/completions",
+        url="http://192.168.17.6:1234/v1/chat/completions",
         params=dict(model=model, max_tokens=8192, temperature=0.1),
         prompt=prompt,
         timeout=300,
@@ -131,10 +131,10 @@ def process_pdf_folder(input_folder_str: str, output_folder_str: str, app_queue:
             app_queue.put(("status", "Error: Could not create output folder."))
             return
 
-    model_name = "internvl3-9b" # As specified
+    model_name = "internvl3-8b-instruct" # As specified
     
     app_queue.put(("status", f"Scanning for PDF files in {input_folder_str}..."))
-    pdf_files = list(input_path.glob("*.pdf"))
+    pdf_internvl3-9bth.glob("*.pdf"))
     if not pdf_files:
         app_queue.put((logging.INFO, f"No PDF files found in {input_folder_str}"))
         app_queue.put(("status", "No PDF files found."))
