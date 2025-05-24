@@ -2,3 +2,6 @@ docling
 litellm
 google-generativeai
 requests
+python-docx
+pdf2image
+python-dotenv
